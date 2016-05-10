@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Main</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			
+			<div class="page-header col-sm-12">
+				<h1>Welcome <small>Convention Manager 0.1.Beta</small></h1>
+			</div>
+
+
+			<div class="col-sm-6">
+
+				<!-- <h4>Elapsed Time</h4> -->
+				
+				<!-- <form class="inline">	
+					<div class="form-group col-sm-4">
+					    <input type="text" class="form-control" id="init" placeholder="set init">
+					</div>
+
+					<div class="form-group col-sm-4">
+					    <input type="text" class="form-control" id="end" placeholder="set end">
+					</div>
+
+				  	<span id="init" type="submit" class="col-sm-4 btn btn-default">set</span>
+				</form> -->
+
+				<!-- <div class="col-sm-12 clock circle">
+					<div class="bgLayer">
+					    <div class="topLayer"></div>
+					    <canvas id="canvas_days" width="150" height="150">
+					    </canvas>
+					    <div class="text">
+					        <p class="val">0</p>
+					        <p class="type_days">Clock</p>
+					    </div>
+					</div>
+				</div> -->
+
+				<h4>Countdown Timer</h4>
+
+				<form>
+					<div class="form-group col-sm-6">
+					    <input type="text" class="form-control" id="minutes" placeholder="set minutes">
+				  	</div>
+				  	<span id="set-minutes" type="submit" class="col-sm-6 btn btn-primary">Start</span>
+				</form>
+			</div>
+
+			<div class="col-sm-6" >	
+				<form>
+					<label>Messenger</label>
+					<div class="form-group ">
+					    <textarea class="form-control" id="message" placeholder="Message"></textarea>
+				  	</div>
+				  	<span id="send-thoughts" type="submit" class="btn btn-primary">Send Message</span>
+				</form>
+
+				<li class="text-success" id="messages" ></li>
+			</div>
+
+		</div>
+
+		<div class="row">
+			
+
+			
+			<!-- <div class="row">			
+				<textarea id="message" class="col-sm-8"></textarea>
+				<div id="send-thoughts" class="col-sm-4 btn btn-primary btn-lg">Send Message</div>
+			</div> -->
+	<!-- 
+			<div class="row">	
+				<input id="minutes" type="text"></input>
+				<div id="set-minutes">Set Minutes</div>
+			</div> -->
+		</div>
+			<!-- <img src="..." alt="..." class="img-circle"> -->
+	</div>
+</body>
+
+<script type="text/javascript">
+
+		  var socket = io.connect("http://localhost:8080");
+
+		 
+
+		  $("#send-thoughts").click(function(){
+		  	socket.emit('message',  $('#message').val() );
+		  });
+		  socket.on('message', function (data) {
+			    console.log(data);
+			    $('#messages').append().text(data);
+			});
+
+		  $("#set-minutes").click(function(){
+		  	console.log($('#minutes').val())
+		  	socket.emit('minutes',  $('#minutes').val() );
+		  });
+
+
+		   
+
+
+</script>
+
+</html>

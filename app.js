@@ -2,6 +2,7 @@ var time = new Object();
 
 var gui = require('nw.gui');
 
+
 //Monitor Espicifications
 gui.Screen.Init();
 win = gui.Window.get();
@@ -32,57 +33,39 @@ if (screens.length > 1) {
       y:screens[0].work_area.y,
       width:768,
       height:300,
-      fullscreen:false,
-      toolbar: false
+      fullscreen:false
     });
 
     var win2 = gui.Window.open ('msg.html', {
       x:screens[1].work_area.x,
       y:screens[1].work_area.y,
       fullscreen:true,
-      toolbar: false,
       kiosk:true
     });
+
 
 
 } else{
 
     var win = gui.Window.open ('counter.html', {
       fullscreen:false,
-      toolbar: false, 
+      //toolbar: false,
       width:768,
       height:300,
-      position:"bottom"
+      position:"center"
     });
 
     var win2 = gui.Window.open ('msg.html', {
       x:screens[0].work_area.x,
       y:screens[0].work_area.y,
       fullscreen:true,
-      toolbar: false
+     // toolbar: false
     });
 
+
+    //win.enterKioskMode();
     win.setAlwaysOnTop(true);
 
 
 };
-
-
-/*var win = gui.Window.open ('counter.html', {
-  x:screens[0].work_area.x,
-  y:screens[0].work_area.y,
-  fullscreen:false,
-  toolbar: true,
-  showDevTools: true
-});
-
-
-var win2 = gui.Window.open ('msg.html', {
-  x:screens[1].work_area.x,
-  y:screens[1].work_area.y,
-  fullscreen:false,
-  toolbar: true,
-  showDevTools: true
-});
-*/
 

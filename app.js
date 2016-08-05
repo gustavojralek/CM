@@ -58,13 +58,13 @@ if (screens.length > 1) {
     var win2 = gui.Window.open ('msg.html', {
       x:screens[0].work_area.x,
       y:screens[0].work_area.y,
-      fullscreen:true,
+      fullscreen:true
      // toolbar: false
     });
 
 
     //win.enterKioskMode();
-    win.setAlwaysOnTop(true);
+   // win.setAlwaysOnTop(true);
 
 
 };
